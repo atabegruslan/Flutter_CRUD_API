@@ -2,10 +2,13 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'data/post_api_service.dart';
-import 'data/auth_api_service.dart';
 import 'post.dart' as model;
 
 class Home extends StatefulWidget {
+  final String bearerToken;
+
+  Home({ Key key, this.bearerToken }): super(key: key);
+
   @override
   _HomeState createState() => _HomeState();
 }
@@ -16,23 +19,11 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-    futurePosts = fetchPosts();
+    futurePosts = fetchPosts(widget.bearerToken);
   }
 
-  Future<List<model.Post>> fetchPosts() async {
-
-    final auth = await Provider.of<AuthApiService>(context, listen: false).login({'email': 'eve.holt@reqres.in', 'password': 'cityslicka'});
-    String token = 'Bearer ';
-
-    if (auth.statusCode == 200) {
-      token += json.decode(auth.bodyString)['token'];
-    } else {
-      print('Failed to authenticate');
-      token += '';
-    }
-
-    final response = await Provider.of<PostApiService>(context, listen: false).getPosts(token);
-    //print(response.body);
+  Future<List<model.Post>> fetchPosts(String bearerToken) async {
+    final response = await Provider.of<PostApiService>(context, listen: false).getPosts('Bearer ' + bearerToken);
 
     if (response.statusCode == 200) {
       List rawList = json.decode(response.bodyString)['data'].toList();

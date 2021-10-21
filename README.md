@@ -64,10 +64,15 @@ If you chose 'new project', you'd start to develop Android apps using Java the o
 
 ### Making this project
 
+Basics:
 - Chopper: https://github.com/Ruslan-Aliyev/Flutter_Chopper
 - Dummy API: https://reqres.in/
 - Handle Responses: https://medium.com/@boylenssen/converting-the-response-from-chopper-to-an-object-642fd46608ff
 - Multiple Providers: https://codewithandrea.com/videos/advanced-provider-tutorial-part2/
+
+Login:   
+- Login: https://github.com/Ruslan-Aliyev/Android_Flutter_SignIn
+- Pass data into `StatefulWidget`: https://www.codegrepper.com/code-examples/dart/send+params+to+stateful+widget
 
 ### Publishing APK
 
