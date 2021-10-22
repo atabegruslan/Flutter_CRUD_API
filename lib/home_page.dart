@@ -33,6 +33,7 @@ class _HomeState extends State<Home> {
         model.Post post = model.Post.fromJson(rawList[i]);
         print(post.place);
         print(post.comments);
+        print(post.img_url);
         list.add(post);
       }
 
@@ -66,6 +67,7 @@ class _HomeState extends State<Home> {
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       subtitle: Text(post.comments),
+                      leading: Image.network(post.img_url),
                     );
                   });
             } else {
