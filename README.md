@@ -74,6 +74,11 @@ Login:
 - Login: https://github.com/Ruslan-Aliyev/Android_Flutter_SignIn
 - Pass data into `StatefulWidget`: https://www.codegrepper.com/code-examples/dart/send+params+to+stateful+widget
 
+Localhost API:
+1. Use computer's IP address, not `localhost`
+2. Allow CORS on local backend: https://github.com/atabegruslan/Laravel_CRUD_API/commit/1171b4f0af9807ee933bfd0a7bea5b22059976ca
+3. https://stackoverflow.com/questions/65630743/how-to-solve-flutter-web-api-cors-error-only-with-dart-code-v0/66879350#66879350
+
 ### Publishing APK
 
 - https://www.youtube.com/watch?v=g1fByAsqQRk&list=PLMQAFLQy-nKch8Tk31y4i6MxMI9V9C-XO&index=5

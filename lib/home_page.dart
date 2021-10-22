@@ -26,14 +26,13 @@ class _HomeState extends State<Home> {
     final response = await Provider.of<PostApiService>(context, listen: false).getPosts('Bearer ' + bearerToken);
 
     if (response.statusCode == 200) {
-      List rawList = json.decode(response.bodyString)['data'].toList();
-      print(rawList);
+      List rawList = json.decode(response.bodyString)['data']['data'].toList();
       List<model.Post> list = [];
 
       for (int i = 0; i < rawList.length; i++) {
         model.Post post = model.Post.fromJson(rawList[i]);
-        print(post.name);
-        print(post.color);
+        print(post.place);
+        print(post.comments);
         list.add(post);
       }
 
@@ -47,6 +46,9 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Travel Blog"),
+      ),
       body: FutureBuilder<List<model.Post>>(
           future: futurePosts,
           builder: (context, snapshot) {
@@ -60,10 +62,10 @@ class _HomeState extends State<Home> {
                     model.Post post = posts[index];
                     return new ListTile(
                       title: new Text(
-                        post.name,
+                        post.place,
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      subtitle: Text(post.color),
+                      subtitle: Text(post.comments),
                     );
                   });
             } else {

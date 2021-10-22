@@ -16,7 +16,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Login Page"),
+        title: Text("Travel Blog"),
       ),
       body: Container(
         padding: EdgeInsets.all(20.0),
@@ -33,13 +33,13 @@ class _LoginPageState extends State<LoginPage> {
               TextFormField(
                   onSaved: (value) => _email = value,
                   keyboardType: TextInputType.emailAddress,
-                  initialValue: "eve.holt@reqres.in",
+                  initialValue: "ruslanaliyev1849@gmail.com",
                   decoration: InputDecoration(labelText: "Email Address")),
               TextFormField(
                   onSaved: (value) => _password = value,
                   //obscureText: true,
                   obscureText: false, // temporary
-                  initialValue: "cityslicka",
+                  initialValue: "12345678",
                   decoration: InputDecoration(labelText: "Password")),
               SizedBox(height: 20.0),
               RaisedButton(
@@ -51,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
 
                     // Validate will return true if is valid, or false if invalid.
                     if (form.validate()) {
-                      var result = Provider.of<AuthApiService>(context, listen: false).loginUser({'email': _email, 'password': _password});
+                      var result = Provider.of<AuthApiService>(context, listen: false).loginUser(_email, _password);
 
                       if (result == null) {
 

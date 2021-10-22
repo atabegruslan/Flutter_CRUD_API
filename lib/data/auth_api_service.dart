@@ -6,18 +6,26 @@ import 'dart:convert';
 // In order for the source gen to know which file to generate and which files are "linked", you need to use the part keyword.
 part 'auth_api_service.chopper.dart';
 
-@ChopperApi(baseUrl: '/login')
+@ChopperApi(baseUrl: '/token')
 abstract class AuthApiService extends ChopperService with ChangeNotifier {
   var bearerToken;
 
   @Post()
   Future<Response> login(@Body() Map<String, dynamic> body);
 
-  Future<String> loginUser(@Body() Map<String, dynamic> body) async {
-    var result = await login(body);
+  Future<String> loginUser(String email, String password) async {
+    var result = await login(
+        {
+          'username':email,
+          'password':password,
+          'client_id':4,
+          'client_secret':'HJ6A8hdMVI9TvtgJUXC6b4xNNtOmzaYO8Q0T61ey',
+          'grant_type':'password'
+        }
+    );
 
     if (result.statusCode == 200) {
-      this.bearerToken = json.decode(result.bodyString)['token'];
+      this.bearerToken = json.decode(result.bodyString)['access_token'];
       notifyListeners();
 
       return Future.value(bearerToken);
@@ -35,7 +43,7 @@ abstract class AuthApiService extends ChopperService with ChangeNotifier {
   static AuthApiService create() {
     final client = ChopperClient(
       // The first part of the URL is now here
-      baseUrl: 'https://reqres.in/api', // Dummy for Testing
+      baseUrl: 'http://192.168.0.101:80/Laravel_CRUD_API/public/oauth',
       services: [
         // The generated implementation
         _$AuthApiService(),

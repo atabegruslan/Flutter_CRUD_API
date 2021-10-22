@@ -4,7 +4,7 @@ import 'package:chopper/chopper.dart';
 // In order for the source gen to know which file to generate and which files are "linked", you need to use the part keyword.
 part 'post_api_service.chopper.dart';
 
-@ChopperApi(baseUrl: '/unknown')
+@ChopperApi(baseUrl: '/entry')
 abstract class PostApiService extends ChopperService {
   @Get()
   Future<Response> getPosts([
@@ -26,7 +26,7 @@ abstract class PostApiService extends ChopperService {
   static PostApiService create() {
     final client = ChopperClient(
       // The first part of the URL is now here
-      baseUrl: 'https://reqres.in/api', // Dummy for Testing
+      baseUrl: 'http://192.168.0.101/Laravel_CRUD_API/public/api',
       services: [
         // The generated implementation
         _$PostApiService(),

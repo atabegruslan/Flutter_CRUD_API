@@ -15,7 +15,7 @@ class _$AuthApiService extends AuthApiService {
   final definitionType = AuthApiService;
 
   Future<Response> login(Map<String, dynamic> body) {
-    final $url = '/login';
+    final $url = '/token';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
     return client.send<dynamic, dynamic>($request);

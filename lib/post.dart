@@ -1,16 +1,16 @@
 class Post {
-  final String name;
-  final String color;
+  final String place;
+  final String comments;
 
   Post({
-    this.name,
-    this.color,
+    this.place,
+    this.comments,
   });
 
   factory Post.fromJson(Map<String, dynamic> json) {
     return Post(
-      name: json['name'],
-      color: json['color'],
+      place: json['place'],
+      comments: json['comments'],
     );
   }
 }
