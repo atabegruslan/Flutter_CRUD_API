@@ -75,13 +75,22 @@ Login:
 - Pass data into `StatefulWidget`: https://www.codegrepper.com/code-examples/dart/send+params+to+stateful+widget
 
 Localhost API:
-1. Use computer's IP address, not `localhost`
-2. Allow CORS on local backend: https://github.com/atabegruslan/Laravel_CRUD_API/commit/1171b4f0af9807ee933bfd0a7bea5b22059976ca
-3. https://stackoverflow.com/questions/65630743/how-to-solve-flutter-web-api-cors-error-only-with-dart-code-v0/66879350#66879350
+- Use computer's IP address, not `localhost`
+- Allow CORS on local backend: https://github.com/atabegruslan/Laravel_CRUD_API/commit/1171b4f0af9807ee933bfd0a7bea5b22059976ca
+- https://stackoverflow.com/questions/65630743/how-to-solve-flutter-web-api-cors-error-only-with-dart-code-v0/66879350#66879350
+- https://medium.com/@podcoder/connecting-flutter-application-to-localhost-a1022df63130
 
 Image from API:
 - https://flutter.dev/docs/cookbook/images/network-image
 - https://www.kindacode.com/article/flutter-listtile/
+
+Upload Image in Form as MultiPart
+- https://androidkt.com/how-to-upload-image-using-multipart-in-flutter/
+- https://pub.dev/documentation/chopper/latest/chopper/Multipart-class.html  
+  - https://pub.dev/documentation/chopper/latest/chopper/PartFile-class.html
+  - https://stackoverflow.com/questions/59988978/how-to-send-file-using-chopper
+- Not used, but for ref: https://pub.dev/packages/image_form_field
+- Because of `image_picker`, need to use Android or iOS emulator, not web emulator.
 
 ### Publishing APK
 

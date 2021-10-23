@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'data/post_api_service.dart';
 import 'post.dart' as model;
+import 'item_page.dart';
+import 'create_page.dart';
 
 class Home extends StatefulWidget {
   final String bearerToken;
@@ -31,9 +33,6 @@ class _HomeState extends State<Home> {
 
       for (int i = 0; i < rawList.length; i++) {
         model.Post post = model.Post.fromJson(rawList[i]);
-        print(post.place);
-        print(post.comments);
-        print(post.img_url);
         list.add(post);
       }
 
@@ -42,6 +41,22 @@ class _HomeState extends State<Home> {
       print('Failed to load posts');
       return [];
     }
+  }
+
+  void _viewItem(BuildContext context, int id) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => ItemPage(id: id, bearerToken: widget.bearerToken),
+      ),
+    );
+  }
+
+  void _create(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => CreatePage(bearerToken: widget.bearerToken),
+      ),
+    );
   }
 
   @override
@@ -68,6 +83,7 @@ class _HomeState extends State<Home> {
                       ),
                       subtitle: Text(post.comments),
                       leading: Image.network(post.img_url),
+                      onTap: () => _viewItem(context, post.id),
                     );
                   });
             } else {
@@ -77,6 +93,10 @@ class _HomeState extends State<Home> {
             }
 
           }
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () => _create(context),
       ),
     );
   }

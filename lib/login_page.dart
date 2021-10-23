@@ -42,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
                   initialValue: "12345678",
                   decoration: InputDecoration(labelText: "Password")),
               SizedBox(height: 20.0),
-              RaisedButton(
+              ElevatedButton(
                   child: Text("LOGIN"),
                   onPressed: () {
                     // save the fields..

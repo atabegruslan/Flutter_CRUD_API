@@ -21,16 +21,21 @@ class _$PostApiService extends PostApiService {
     return client.send<dynamic, dynamic>($request);
   }
 
-  Future<Response> getPost(int id) {
-    final $url = '/unknown/${id}';
-    final $request = Request('GET', $url, client.baseUrl);
+  Future<Response> getPost(String token, int id) {
+    final $url = '/entry/${id}';
+    final $headers = {'Authorization': token};
+    final $request = Request('GET', $url, client.baseUrl, headers: $headers);
     return client.send<dynamic, dynamic>($request);
   }
 
-  Future<Response> postPost(Map<String, dynamic> body) {
-    final $url = '/unknown';
-    final $body = body;
-    final $request = Request('POST', $url, client.baseUrl, body: $body);
+  Future<Response> postPost(
+      String token, String place, String comments, List<int> image) {
+    final $url = '/entry';
+    final $headers = {'Authorization': token,'Connection':'Keep-Alive','Keep-Alive':'timeout=5, max=1000'};
+    final $body = {'place': place, 'comments': comments};
+    final $parts = <PartValue>[PartValueFile<List<int>>('image', image)];
+    final $request = Request('POST', $url, client.baseUrl,
+        body: $body, parts: $parts, multipart: true, headers: $headers);
     return client.send<dynamic, dynamic>($request);
   }
 }

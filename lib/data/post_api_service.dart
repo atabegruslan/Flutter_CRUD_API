@@ -15,18 +15,24 @@ abstract class PostApiService extends ChopperService {
   @Get(path: '/{id}')
   // Query parameters are specified the same way as @Path
   // but obviously with a @Query annotation
-  Future<Response> getPost(@Path('id') int id);
+  Future<Response> getPost(
+      @Header('Authorization') String token,
+      @Path('id') int id
+  );
 
-  // Put & Patch requests are specified the same way - they must contain the @Body
-  @Post()
+  @multipart
+  @Post(headers: {'Connection':'Keep-Alive','Keep-Alive':'timeout=5, max=1000'})
   Future<Response> postPost(
-      @Body() Map<String, dynamic> body,
+      @Header('Authorization') String token,
+      @Field('place') String place,
+      @Field('comments') String comments,
+      @PartFile('image') List<int> image,
   );
 
   static PostApiService create() {
     final client = ChopperClient(
       // The first part of the URL is now here
-      baseUrl: 'http://192.168.0.101/Laravel_CRUD_API/public/api',
+      baseUrl: 'http://192.168.0.101:80/Laravel_CRUD_API/public/api',
       services: [
         // The generated implementation
         _$PostApiService(),
